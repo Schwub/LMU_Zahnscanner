@@ -30,7 +30,7 @@ Hierfür wird ein Benutzerkonto benötigt.
 * pip install serial
 * pip install scipy
 * pip install matplotlib==2.0.2
-
+* https://extras.wxpython.org/wxPython4/extras/linux/gtk3/debian-9/wxPython-4.0.3-cp27-cp27mu-linux_x86_64.whl
 ## Nur Für Virtualbox
 
 * export DISPLAY=:0
