@@ -205,7 +205,6 @@ class Board(object):
 
     def _send_command(self, req, callback=None, read_lines=False):
         """Sends the request and returns the response"""
-        print(req)
         ret = ''
         if self._is_connected and req != '':
             if self._serial_port is not None and self._serial_port.isOpen():

@@ -18,12 +18,10 @@ try:
     import numpy
     import scipy
     import matplotlib
-    import faulthandler
 except ImportError as e:
     print(e.message)
     exit(1)
 
-faulthandler.enable()
 
 # Try first the sources
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
