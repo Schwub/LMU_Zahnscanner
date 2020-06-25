@@ -1,26 +1,24 @@
-Q
-#include <ArduinoJson.h>
-
 #define plainDirPin 7
 #define plainStepPin 13
 
-#define rockerDirPin 28
-#define rockerStepPin 29
+#define rockerDirPin 6
+#define rockerStepPin 12
 #define rockerLimitSwitch 4 
 
-#define tableDirPin 26
-#define tableStepPin 27
+#define tableDirPin 5
+#define tableStepPin 11
 #define tableLimitSwitch 3
 
 #define right HIGH
 #define left LOW
 
-
-
-
-
 #define rightLaser 10
 #define leftLaser 9
+
+//Test
+#define delayTime 1000
+//Production
+//#define delayTime 1000
 
 
 void setup() {
@@ -32,10 +30,17 @@ void setup() {
   pinMode(plainStepPin, OUTPUT);
   pinMode(plainDirPin, OUTPUT);
 
+  //Setup Rocker Stepper
+  pinMode(rockerStepPin, OUTPUT);
+  pinMode(rockerDirPin, OUTPUT);
+
+  //Setup Table Stepper
+  pinMode(tableStepPin, OUTPUT);
+  pinMode(tableDirPin, OUTPUT);
+
   //Setup Limit Switch
   pinMode(rockerLimitSwitch, INPUT);
   pinMode(tableLimitSwitch, INPUT);
-
   
   //digitalWrite(12, LOW);
   Serial.begin(9600);
@@ -46,69 +51,80 @@ void loop() {
 }
 
 void handleSerial() {
+  int tableLimitSwitchState;
+  int rockerLimitSwitchState;
+  
   //
   while(Serial.available() > 0) {
     String serialData = Serial.readStringUntil('\n');
-    StaticJsonDocument<512> doc;
-    DeserializationError error = deserializeJson(doc, serialData);
 
-    if(error) {
-      Serial.println(error.c_str());
-    }
+      tableLimitSwitchState = digitalRead(tableLimitSwitch);
+      rockerLimitSwitchState = digitalRead(rockerLimitSwitch);
 
-    String operation = doc["operation"];
-    Serial.println("Received Operation: " + operation);
-   
+      if(rockerLimitSwitchState == LOW) {
+        Serial.println("ES10");
+      }
+      else if(rockerLimitSwitchState == HIGH) {
+        Serial.println("ES11");
+      }
+      
+      if(tableLimitSwitchState == LOW) {
+        Serial.println("ES20");
+      }
+      else if(tableLimitSwitchState == HIGH) {
+        Serial.println("ES21");
+      }
 
-    if(operation == "move" ){
-      handleMove(doc);
-    }
-    else if(operation == "laser" ){
-      handleLaser(doc);
-    }
-    else {
-      Serial.println("Invalid Operation: ");
-      Serial.println(operation);
-    }
+      Serial.println(serialData);
+      if(serialData[0] == 'L' ){
+        handleLaser(serialData);
+      }
+      else if (serialData.equals("S10")) {
+        digitalWrite(plainDirPin, HIGH);
+        oneStep(plainStepPin);
+      }
+      else if (serialData.equals("S11")) {
+        digitalWrite(plainDirPin, LOW);
+        oneStep(plainStepPin);
+      }
+      else if (serialData.equals("S20")) {
+        digitalWrite(rockerDirPin, HIGH);
+        oneStep(rockerStepPin);
+      }
+      else if (serialData.equals("S21")) {
+        digitalWrite(rockerDirPin, LOW);
+        oneStep(rockerStepPin);
+      }
+      else if (serialData.equals("S30")) {
+        digitalWrite(tableDirPin, HIGH);
+        oneStep(tableStepPin);
+      }
+      else if (serialData.equals("S31")) {
+        digitalWrite(tableDirPin, LOW);
+        oneStep(tableStepPin);
+     }
+     Serial.println("0");
   }
 }
 
-void handleMove(StaticJsonDocument<512> doc) {
-  String stepper = doc["stepper"];
-  String dir = doc["direction"];
-  int steps = doc["steps"];
-  Serial.println(dir);
-  if( dir.equals("right")){
-    digitalWrite(plainDirPin, HIGH);
-  } else {
-    digitalWrite(plainDirPin, LOW);
-  }
-  for (int i = 0; i < steps; i++) {
-    if(digitalRead(tableLimitSwitch) == LOW) {
-      break;
-    }
-    // These four lines result in 1 step:
-    digitalWrite(plainStepPin, HIGH);
-    delayMicroseconds(1000);
-    digitalWrite(plainStepPin, LOW);
-    delayMicroseconds(1000);
-  }
+void handleLaser(String serialData){
+      if(serialData.equals("L11")){
+        digitalWrite(rightLaser, HIGH);
+      }
+      else if (serialData.equals("L10")) {
+        digitalWrite(rightLaser, LOW);
+      }
+      else if (serialData.equals("L21")) {
+        digitalWrite(leftLaser, HIGH);
+      }
+      else if (serialData.equals("L20")) {
+        digitalWrite(leftLaser, LOW);
+      }
 }
 
-void handleLaser(StaticJsonDocument<512> doc) {
-  String laser = doc["laser"];
-  String state = doc["state"];
-  if(laser.equals("right")){
-    if(state.equals("on")){
-      digitalWrite(rightLaser, HIGH);
-    } else if(state.equals("off")){
-      digitalWrite(rightLaser, LOW);
-    }
-  } else if(laser.equals("left")){
-    if(state.equals("on")){
-      digitalWrite(leftLaser, HIGH);
-    } else if(state.equals("off")){
-      digitalWrite(leftLaser, LOW);
-    }
-  }
+void oneStep(int stepper) {
+  digitalWrite(stepper, HIGH);
+  delay(delayTime);
+  digitalWrite(stepper, LOW);
+  delay(delayTime);
 }
