@@ -1,27 +1,35 @@
-#define plainDirPin 7
-#define plainStepPin 13
+#define enablePin 12
 
-#define rockerDirPin 6
-#define rockerStepPin 12
-#define rockerLimitSwitch 4 
+#define plainDirPin 30
+#define plainStepPin 28
 
-#define tableDirPin 5
-#define tableStepPin 11
-#define tableLimitSwitch 3
 
-#define right HIGH
-#define left LOW
+#define rockerDirPin 30                                                       
+#define rockerStepPin 27
+#define rockerLimitSwitch 10
 
-#define rightLaser 10
-#define leftLaser 9
+#define tableDirPin 32
+#define tableStepPin 26
+#define tableLimitSwitch 11
+
+
+#define rightLaser 9
+#define leftLaser 8
 
 //Test
 #define delayTime 1000
 //Production
 //#define delayTime 1000
 
+#define stepsPerRevolution 8
+
 
 void setup() {
+
+  //Enable   
+  pinMode(enablePin, OUTPUT);
+  digitalWrite(enablePin, LOW);
+  
   //Setup Laser
   pinMode(rightLaser, OUTPUT);
   pinMode(leftLaser, OUTPUT);
@@ -123,8 +131,11 @@ void handleLaser(String serialData){
 }
 
 void oneStep(int stepper) {
-  digitalWrite(stepper, HIGH);
-  delay(delayTime);
-  digitalWrite(stepper, LOW);
-  delay(delayTime);
+    for (int i = 0; i < stepsPerRevolution; i++) {
+    // These four lines result in 1 step:
+    digitalWrite(stepper, HIGH);
+    delayMicroseconds(delayTime);
+    digitalWrite(stepper, LOW);
+    delayMicroseconds(delayTime);
+  }
 }
