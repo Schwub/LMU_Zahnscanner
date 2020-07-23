@@ -33,13 +33,39 @@ class Controller:
 
     def move_plane_left(self, steps):
         for i in range(steps):
+            self.connection.write('S10\n')
+            self.read_response()
+            self.positionTable += 1
+
+    def move_plane_right(self, steps):
+        for i in range(steps):
+            self.connection.write('S11\n')
+            self.read_response()
+            self.positionTable -= 1
+
+    def move_rocker_back(self, steps):
+        for i in range(steps):
+            self.connection.write('S20\n')
+            self.read_response()
+            self.positionRocker -= 1
+
+    def move_rocker_front(self, steps):
+        for i in range(steps):
+            if self.rockerLimitSwitch:
+                break
+            self.connection.write('S21\n')
+            self.read_response()
+            self.positionRocker += 1
+
+    def turn_table_clockwise(self, steps):
+        for i in range(steps):
             if self.tableLimitSwitch:
                 break
             self.connection.write('S30\n')
             self.read_response()
             self.positionTable += 1
 
-    def move_plane_right(self, steps):
+    def turn_table_counterclockwise(self, steps):
         for i in range(steps):
             self.connection.write('S31\n')
             self.read_response()
@@ -59,12 +85,19 @@ class Controller:
 
 
 if __name__ == '__main__':
-    controller = Controller('/dev/ttyACM0', 9600)
-    controller.move_plane_left(500)
-    #controller.move_plane_right(100)
+    controller = Controller('/dev/ttyUSB0', 9600)
+    controller.move_plane_left(10)
+    controller.move_plane_right(10)
+    time.sleep(2)
+    controller.move_rocker_back(10)     
+    controller.move_rocker_front(10)
+    time.sleep(2)
+    controller.turn_table_clockwise(10)
+    controller.turn_table_counterclockwise(10)
+    time.sleep(2)
     controller.right_laser_on()
     controller.left_laser_on()
-    time.sleep(5)
+    time.sleep(2)
     controller.left_laser_off()
     controller.right_laser_off()
-    time.sleep(1)
+    time.sleep(2)
