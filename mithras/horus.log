@@ -1,0 +1,47 @@
+2020-05-27 11:19:43.042 - Start application Horus 0.2rc1
+2020-05-27 11:20:01.926 - Connecting camera 0
+2020-05-27 11:20:17.747 - Finish application Horus 0.2rc1
+2020-05-27 11:23:06.797 - Start application Horus 0.2rc1
+2020-05-27 11:23:11.106 - Connecting camera 0
+2020-05-27 11:23:23.358 - Finish application Horus 0.2rc1
+2020-05-27 12:02:27.363 - Start application Horus 0.2rc1
+2020-05-27 12:02:39.394 - Start application Horus 0.2rc1
+2020-05-27 12:02:58.805 - Start application Horus 0.2rc1
+2020-05-27 12:04:39.682 - Start application Horus 0.2rc1
+2020-05-27 12:04:59.887 - Start application Horus 0.2rc1
+2020-05-27 12:08:15.240 - Start application Horus 0.2rc1
+2020-05-27 12:09:03.991 - Start application Horus 0.2rc1
+2020-05-27 12:14:44.680 - Start application Horus 0.2rc1
+2020-05-27 13:23:17.675 - Start application Horus 0.2rc1
+2020-05-27 13:23:20.277 - Connecting camera 0
+2020-05-27 13:23:26.810 -  Done
+2020-05-27 13:23:26.811 - Connecting board /dev/ttyACM0 115200
+2020-05-27 13:23:42.170 - Disconnecting board /dev/ttyACM0
+2020-05-27 13:23:42.170 -  Done
+2020-05-27 13:23:42.202 - Finish application Horus 0.2rc1
+2020-05-27 13:23:42.235 -  Done
+2020-05-27 13:26:25.660 - Start application Horus 0.2rc1
+2020-05-27 13:27:32.509 - Start application Horus 0.2rc1
+2020-05-27 13:27:35.032 - Connecting camera 0
+2020-05-27 13:27:41.580 -  Done
+2020-05-27 13:27:41.581 - Connecting board /dev/ttyACM0 115200
+2020-05-27 13:27:41.581 - Error opening the port /dev/ttyACM0
+
+2020-05-27 13:28:00.640 - Connecting camera 0
+2020-05-27 13:28:07.174 -  Done
+2020-05-27 13:28:07.174 - Connecting board /dev/ttyACM0 115200
+2020-05-27 13:28:07.174 - Error opening the port /dev/ttyACM0
+
+2020-05-27 13:28:14.423 - Connecting camera 0
+2020-05-27 13:28:21.192 -  Done
+2020-05-27 13:28:21.192 - Connecting board /dev/ttyACM0 115200
+2020-05-27 13:28:21.192 - Error opening the port /dev/ttyACM0
+
+2020-05-27 13:28:24.502 - Finish application Horus 0.2rc1
+2020-05-27 13:28:37.923 - Start application Horus 0.2rc1
+2020-05-27 13:28:40.839 - Connecting camera 0
+2020-05-27 13:28:47.392 -  Done
+2020-05-27 13:28:47.393 - Connecting board /dev/ttyACM0 115200
+2020-05-27 13:28:47.393 - Error opening the port /dev/ttyACM0
+
+2020-05-27 13:28:51.365 - Finish application Horus 0.2rc1
