@@ -85,7 +85,7 @@ class Controller:
 
 
 if __name__ == '__main__':
-    controller = Controller('/dev/ttyUSB0', 9600)
+    controller = Controller('/dev/ttyUSB0', 9060)
     controller.move_plane_left(10)
     controller.move_plane_right(10)
     time.sleep(2)

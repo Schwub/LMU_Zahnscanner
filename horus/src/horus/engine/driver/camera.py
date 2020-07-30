@@ -10,6 +10,7 @@ import math
 import time
 import glob
 import platform
+import horus.engine.driver.cyuye.cyueye as cu
 
 import logging
 logger = logging.getLogger(__name__)
@@ -24,31 +25,32 @@ if system == 'Darwin':
 class WrongCamera(Exception):
 
     def __init__(self):
-        Exception.__init__(self, "Wrong Camera")
+        self.message = "Wrong Camera"
 
 
 class CameraNotConnected(Exception):
 
     def __init__(self):
-        Exception.__init__(self, "Camera Not Connected")
+        self.message = "Camera Not Connected"
 
 
 class InvalidVideo(Exception):
 
     def __init__(self):
+        self.message = "Invalid Video"
         Exception.__init__(self, "Invalid Video")
 
 
 class WrongDriver(Exception):
 
     def __init__(self):
-        Exception.__init__(self, "Wrong Driver")
+        self.message = "Wrong Driver"
 
 
 class InputOutputError(Exception):
 
     def __init__(self):
-        Exception.__init__(self, "V4L2 Input/Output Error")
+        self.message = "V4L2 Input/Output Error"
 
 
 class Camera(object):
@@ -111,19 +113,23 @@ class Camera(object):
                     self.controls = uvc.mac.Controls(device.uId)
         if self._capture is not None:
             self._capture.release()
-        self._capture = cv2.VideoCapture(self.camera_id)
+        #self._capture = cv2.VideoCapture(self.camera_id)
+        #TODO: Select Format
+        self._capture = cu.Cam(format_id=9)
+        self._capture.alloc_image_mem()
         time.sleep(0.2)
-        if not self._capture.isOpened():
-            time.sleep(1)
-            self._capture.open(self.camera_id)
-        if self._capture.isOpened():
-            self._is_connected = True
-            self._check_video()
-            self._check_camera()
-            self._check_driver()
-            logger.info(" Done")
-        else:
-            raise CameraNotConnected()
+        self._is_connected = True
+        # if not self._capture.isOpened():
+        #     time.sleep(1)
+        #     self._capture.open(self.camera_id)
+        # if self._capture.isOpened():
+        #     self._is_connected = True
+        #     self._check_video()
+        #     self._check_camera()
+        #     self._check_driver()
+        #     logger.info(" Done")
+        # else:
+        #     raise CameraNotConnected()
 
     def disconnect(self):
         tries = 0

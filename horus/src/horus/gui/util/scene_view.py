@@ -32,6 +32,7 @@ class SceneView(opengl_gui.glGuiPanel):
         self._zoom = 300
         self._object = None
         self._object_shader = None
+        self._object_shader_no_light = None
         self._object_load_shader = None
         self._obj_color = None
         self._mouse_x = -1

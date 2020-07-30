@@ -103,22 +103,22 @@ class ToolbarConnection(Toolbar):
                 self.update_status(False)
                 self.GetParent().launch_preferences()
             elif isinstance(result, WrongCamera):
-                self._show_message(_(result), wx.ICON_INFORMATION,
+                self._show_message(_(result.message), wx.ICON_INFORMATION,
                                    _("You probably have selected the wrong camera.\n"
                                      "Please select another Camera ID"))
                 self.update_status(False)
                 self.GetParent().launch_preferences(basic=True)
             elif isinstance(result, CameraNotConnected):
-                self._show_message(_(result), wx.ICON_ERROR,
-                                   _("Please plug your camera in and try to connect again"))
+                self._show_message(result.message, wx.ICON_ERROR,
+                                   "Please plug your camera in and try to connect again")
             elif isinstance(result, InvalidVideo):
-                self._show_message(_(result), wx.ICON_ERROR,
+                self._show_message(_(result.message), wx.ICON_ERROR,
                                    _("Unplug and plug your camera USB cable "
                                      "and try to connect again"))
             elif isinstance(result, WrongDriver):
                 if system.is_windows():
                     self._show_message(
-                        _(result), wx.ICON_ERROR,
+                        _(result.message), wx.ICON_ERROR,
                         _("Please, download and install the camera driver: \n"
                           "http://support.logitech.com/en_us/product/hd-webcam-c270"))
 

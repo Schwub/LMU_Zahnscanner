@@ -52,7 +52,7 @@ class Board(object):
 
     """
 
-    def __init__(self, parent=None, serial_name='/dev/ttyUSB0', baud_rate=115200):
+    def __init__(self, parent=None, serial_name='/dev/ttyUSB0', baud_rate=9060):
         self.parent = parent
         self.serial_name = serial_name
         self.baud_rate = baud_rate
@@ -77,18 +77,6 @@ class Board(object):
             self._serial_port = serial.Serial(self.serial_name, self.baud_rate, timeout=2)
             if self._serial_port.isOpen():
                 self._reset()  # Force Reset and flush
-                version = self._serial_port.readline()
-                if "Horus 0.1 ['$' for help]" in version:
-                    raise OldFirmware()
-                elif "Horus 0.2 ['$' for help]" in version:
-                    self.motor_speed(1)
-                    self._serial_port.timeout = 0.05
-                    self._is_connected = True
-                    # Set current position as origin
-                    self.motor_reset_origin()
-                    logger.info(" Done")
-                else:
-                    raise WrongFirmware()
             else:
                 raise BoardNotConnected()
         except Exception as exception:
