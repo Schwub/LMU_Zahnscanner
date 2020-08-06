@@ -23,14 +23,16 @@ Hierfür wird ein Benutzerkonto benötigt.
 
 * apt install libgtk-3-dev
 * apt install freeglut3-dev
-* pip installieren: apt get install python-pip
-* pip install wxPython
-* pip install opencv-python
-* pip install pyopengl
-* pip install serial
-* pip install scipy
-* pip install matplotlib==2.0.2
-* https://extras.wxpython.org/wxPython4/extras/linux/gtk3/debian-9/wxPython-4.0.3-cp27-cp27mu-linux_x86_64.whl
+* git clone https://github.com/Schwub/LMU_Zahnscanner
+* cd LMU_Zahnscanner/horus
+* pip3 install wxpython
+* pip3 install opencv-python
+* pip3 install pyopengl
+* pip3 install matplotlib
+* pip3 install numpy
+* pip3 install scipy
+* python3 horus
+
 ## Nur Für Virtualbox
 
 * export DISPLAY=:0
