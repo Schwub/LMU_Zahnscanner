@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="852ec504-96de-480b-a371-0dccc278108b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../hardware_controller/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/../hardware_controller/controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mithras/src/horus/engine/driver/cyuye/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mithras/src/horus/engine/driver/cyuye/cyueye.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mithras/src/horus/engine/driver/cyuye/cyueye.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mithras/src/horus/engine/driver/cyuye/cyueye.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mithras/src/horus/engine/driver/cyuye/cyueye.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mithras/src/horus/engine/driver/cyuye/setup.py" beforeDir="false" />
-    </list>
+    <list default="true" id="852ec504-96de-480b-a371-0dccc278108b" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +17,7 @@
   <component name="ProjectId" id="1fOo4VIzSLMvGTEjRrrt99swRuc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../hardware_controller" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
